@@ -98,6 +98,8 @@ Mappings:
       Ami: ami-0525a66f4301a6e6d
     us-east-2:
       Ami: ami-0e45caebe3e25580c
+    ap-southeast-2:
+      Ami: ami-0566f9a3f6c240649
 
 Resources:
   IamCloudwatchRole:
@@ -293,7 +295,7 @@ Resources:
               else
                 echo "Cloudwatch is not enabled for jambonz logs"
                 sudo sed -i -e "s/combine_logs: true/combine_logs: false/g" $HOME/apps/ecosystem.config.js 
-              fi
+              fiami
               sudo -u $USER bash -c "pm2 restart $HOME/apps/ecosystem.config.js" 
               sudo -u $USER bash -c "pm2 save"
               sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u $USER --hp $HOME
